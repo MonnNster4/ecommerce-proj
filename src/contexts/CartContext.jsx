@@ -20,7 +20,7 @@ const CartProvider = ({ children }) => {
         if (item.id === id) {
           return { ...item, amount: cartItem.amount + 1 };
         } else {
-          return item;
+          return item;    
         }
       });
       setCart(newCart);
@@ -31,10 +31,10 @@ const CartProvider = ({ children }) => {
   console.log(cart);
 
   return (
-    <CartContext.Provider value={{ addToCart }}>
+    <CartContext.Provider value={{ cart, addToCart }}>
       {children}
     </CartContext.Provider>
-  );
+  );  
 };
 
 export default CartProvider;
