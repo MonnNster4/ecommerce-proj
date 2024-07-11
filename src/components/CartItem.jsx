@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { IoMdClose } from "react-icons/io";
+import { IoMdClose, IoMdRemove } from "react-icons/io";
+import { FiPlus } from "react-icons/fi";
 
-const CartItem = ({ item }) => {
+import { CartContext } from "../contexts/CartContext";
+
+const CartItem = ({ item, product }) => {
   //destructuring item
+
+  const { addToCart } = useContext(CartContext);
+  const { removeToCart } = useContext(CartContext);
+  const { deleteToCart } = useContext(CartContext);
   const { id, title, image, price, amount } = item;
   return (
     <div className="flex">
@@ -22,8 +29,45 @@ const CartItem = ({ item }) => {
               {title}
             </Link>
             {/*remove icon*/}
-            <div className="text-xl cursor-pointer">
-              <IoMdClose className="text-gray-500 hover:text-red-500 transition" />
+            <button
+              onClick={() => {
+                deleteToCart(product, id);
+              }}
+            >
+              <div className="text-xl cursor-pointer">
+                <IoMdClose className="text-gray-500 hover:text-red-500 transition" />
+              </div>
+            </button>
+          </div>
+          <div className="flex gap-x-2 h-[36px] text-sm">
+            <div className="flex flex-1 border justify-center items-center h-full text-primary font-medium max-w-[100px] gap-2 ">
+              <button
+                onClick={() => {
+                  removeToCart(product, id);
+                }}
+              >
+                <div className="flex flex-1 justify-center items-center cursor-pointer">
+                  <IoMdRemove />
+                </div>
+              </button>
+              <div className="flex justify-center items-center h-full px-2">
+                {amount}
+              </div>
+              <button
+                onClick={() => {
+                  addToCart(product, id);
+                }}
+              >
+                <div className="flex flex-1 justify-center items-center cursor-pointer">
+                  <FiPlus />
+                </div>
+              </button>
+            </div>
+            <div className="flex flex-1  justify-around items-center">
+              $ {price}
+            </div>
+            <div className="flex flex-1 justify-end items-center ">
+              {`$ ${parseFloat(price * amount).toFixed(2)} `}
             </div>
           </div>
         </div>

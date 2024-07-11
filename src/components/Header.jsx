@@ -8,10 +8,10 @@ import { BsBag } from "react-icons/bs";
 const Header = () => {
   const {isOpen, setIsOpen} = useContext(SidebarContext);
   return (
-    <header className='bg-pink-200'>
-      <div>Header</div>
-      <div onClick={()=> setIsOpen(!isOpen)} className='cursor-pointer flex relative'>
-        <BsBag className='text-2xl'/>
+    <header className='bg-gray-200 h-14 flex items-center justify-end p-4'>
+
+      <div onClick={()=> setIsOpen(!isOpen)} className='cursor-pointer  relative'>
+        <BsBag className='text-2xl '/>
       </div>
     </header>
   );
