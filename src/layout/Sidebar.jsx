@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { IoMdArrowForward } from "react-icons/io";
 import { FiTrash2 } from "react-icons/fi";
 //components
-import CartItem from "../components/CartItem";
+import CartItem from "./CartItem";
 //sidebar context
 import { SidebarContext } from "../contexts/SidebarContext";
 //import cart context
